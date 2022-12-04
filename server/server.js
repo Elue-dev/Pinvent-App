@@ -1,9 +1,9 @@
 const dotenv = require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 const mongoose = require("mongoose");
+const handleAsync = require("./utils/handle_async");
 
-const app = express();
+const app = require("./app");
 
 const PORT = process.env.PORT || 5000;
 
@@ -16,3 +16,5 @@ mongoose
   .catch((error) => {
     console.log(error);
   });
+
+module.exports = app;
