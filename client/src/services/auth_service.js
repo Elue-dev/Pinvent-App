@@ -77,3 +77,13 @@ export const resetPassword = async (userData, token) => {
     showAlert("error", error.response?.data.message);
   }
 };
+
+export const getLoginStatus = async () => {
+  try {
+    const response = await axios.get(`${server_url}/api/v1/users/login-status`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    showAlert("error", error.response?.data.message);
+  }
+};

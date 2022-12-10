@@ -10,7 +10,6 @@ export default function Header() {
   const user = useSelector(getUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { username } = user?.data;
 
   const logout = async () => {
     await logoutUser();
@@ -23,7 +22,7 @@ export default function Header() {
       <div className="--flex-between --my">
         <h3>
           <span className="--fw-thin">Welcome, </span>
-          <span className="--color-danger">{username}</span>
+          <span className="--color-danger">{user.username}</span>
         </h3>
         <button onClick={logout} className="btn btn--green">
           Logout

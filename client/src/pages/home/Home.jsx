@@ -7,8 +7,12 @@ import {
   ShowOnLogin,
   ShowOnLogout,
 } from "../../components/protect/hidden_links";
+import { getUser } from "../../redux/features/auth/auth_slice";
+import { useSelector } from "react-redux";
 
 const Home = () => {
+  // const user = useSelector(getUser);
+  // console.log(user);
   return (
     <div className="home">
       <nav className="container --flex-between ">

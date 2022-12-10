@@ -46,7 +46,7 @@ export default function Login() {
       setError(null);
 
       const user = await loginUser(userData);
-      dispatch(SET_ACTIVE_USER(user));
+      dispatch(SET_ACTIVE_USER(user.data));
 
       setLoading(false);
       user ? navigate("/dashboard") : null;

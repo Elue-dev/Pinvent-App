@@ -63,10 +63,7 @@
   .hero-image {
     width: 100%;
     img {
-      width: fit-content;
+      width: inherit;
     }
-  }
-  .container {
-    padding: 50px 20px;
   }
 }

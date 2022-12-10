@@ -58,8 +58,6 @@ export default function Signup() {
       setError(null);
 
       const user = await registerUser(userData);
-      dispatch(SET_ACTIVE_USER(user));
-      dispatch(REMOVE_ACTIVE_USER());
       setLoading(false);
       user ? navigate("/login") : null;
     } catch (error) {

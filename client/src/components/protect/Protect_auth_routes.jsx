@@ -6,7 +6,7 @@ export default function ProtectAuthRoutes({ children }) {
   const user = useSelector(getUser);
 
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/dashboard" />;
   }
 
   return children;
