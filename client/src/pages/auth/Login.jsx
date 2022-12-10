@@ -36,7 +36,7 @@ export default function Login() {
     e.preventDefault();
 
     if (!email || !password) {
-      return setError("Both email and password are required");
+      return showAlert("error", "Both email and password are required");
     }
 
     const userData = { email, password };
@@ -52,7 +52,7 @@ export default function Login() {
       user ? navigate("/dashboard") : null;
     } catch (error) {
       setLoading(false);
-      return showAlert("error", error);
+      console.log(error);
     }
   };
 

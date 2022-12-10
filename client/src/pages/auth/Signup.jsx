@@ -36,19 +36,19 @@ export default function Signup() {
     e.preventDefault();
 
     if (!username || !email || !password || !c_password) {
-      return setError("All fields are required");
+      return showAlert("error", "All fields are required");
     }
 
     if (!validateEmail(email)) {
-      return setError("Please enter a valid email address");
+      return showAlert("error", "Please enter a valid email address");
     }
 
     if (password.length < 6) {
-      return setError("Password must be 6 characters or more");
+      return showAlert("error", "Password must be 6 characters or more");
     }
 
     if (password !== c_password) {
-      return setError("Passwords do not match");
+      return showAlert("error", "Passwords do not match");
     }
 
     const userData = { username, email, password };
@@ -64,7 +64,7 @@ export default function Signup() {
       user ? navigate("/login") : null;
     } catch (error) {
       setLoading(false);
-      showAlert("error", error);
+      console.log(error);
     }
   };
 

@@ -39,7 +39,7 @@ export default function ForgotPassword() {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      return showAlert("error", error);
+      console.log(error);
     }
   };
 
@@ -47,9 +47,9 @@ export default function ForgotPassword() {
     <main className="main">
       <div className="login-form">
         <h2 className="heading-secondary ma-bt-lg">Let's get you back!</h2>
-        {error && <h2>{error}</h2>}
-        {message && <h2>{message}</h2>}
-        <form className="form form--login" onClick={restore}>
+        {error && <p className="popup auth_error">{error}</p>}
+        {message && <p className="popup auth_message">{message}</p>}
+        <form className="form form--login" onSubmit={restore}>
           <div className="form-group ma-bt-md">
             <label htmlFor="password" className="form__label">
               Email Address
@@ -60,7 +60,6 @@ export default function ForgotPassword() {
               ref={emailRef}
               onChange={(e) => setEmail(e.target.value)}
               className="form__input"
-              required
               placeholder="you@example.com"
             />
           </div>

@@ -62,11 +62,11 @@ export const forgotPassword = async (userData) => {
   }
 };
 
-export const resetPassword = async (token) => {
+export const resetPassword = async (userData, token) => {
   try {
-    const response = await axios.post(
-      `${server_url}/api/v1/users/reset-password`,
-      token
+    const response = await axios.put(
+      `${server_url}/api/v1/users/reset-password/${token}`,
+      userData
     );
     if (response?.data.status === "success") {
       showAlert("success", "Password reset successful!");

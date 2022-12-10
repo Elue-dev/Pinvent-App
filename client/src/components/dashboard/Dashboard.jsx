@@ -16,8 +16,6 @@ export default function Dashboard() {
   const user = useSelector(getUser);
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
-  console.log(isLoggedIn);
-
   return (
     <div>
       <h1>Dashboard</h1>
