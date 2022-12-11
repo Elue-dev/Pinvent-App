@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const GlobalError = require("../utils/global_error");
 const handleAsync = require("../utils/handle_async");
 const { createAndSendToken } = require("../services/auth_services");
-const message = require("../utils/message");
+const message = require("../utils/auth_message");
 const sendEmail = require("../utils/send_email");
 
 exports.signup = handleAsync(async (req, res, next) => {
@@ -14,7 +14,7 @@ exports.signup = handleAsync(async (req, res, next) => {
     return next(new GlobalError("Please fill in all fields", 400));
   }
 
-  const userExists = await User.findOne({ email: req.body.email });
+  const userExists = await User.findOne({ email });
 
   if (userExists) {
     return next(new GlobalError("Email already in use", 400));
@@ -89,7 +89,7 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return next(new GlobalError("That email does not exist", 404));
+    return next(new GlobalError("That email is not registered", 404));
   }
 
   let token = await Token.findOne({ userId: user._id });
@@ -122,10 +122,13 @@ exports.forgotPassword = handleAsync(async (req, res, next) => {
 
     res.status(200).json({
       status: "success",
-      message: "An email has been sent to reset your password",
+      message: "An email has been sent to reset your password!",
     });
   } catch (error) {
-    console.log(error);
+    res.status(500).json({
+      status: "fail",
+      message: `Email not sent. please try again!`,
+    });
   }
 });
 
@@ -152,6 +155,8 @@ exports.resetPassword = handleAsync(async (req, res, next) => {
   user.password = password;
 
   await user.save();
+
+  // await Token.deleteOne();
 
   res.status(200).json({
     status: "success",

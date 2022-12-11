@@ -5,7 +5,7 @@ const GlobalError = require("../utils/global_error");
 const handleAsync = require("../utils/handle_async");
 
 exports.getUsers = handleAsync(async (req, res) => {
-  const users = await User.find();
+  const users = await User.find().sort("-creatdAt");
 
   res.status(200).json({
     status: "success",
